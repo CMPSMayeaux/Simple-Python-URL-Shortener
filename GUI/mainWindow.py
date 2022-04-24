@@ -13,8 +13,9 @@ window.resizable(width=False, height=False)
 
 # Declare Handling of Convert Button Key Press
 def retrieve_input():
-    """Convert the value of lURLLabel to a shortened URL and assign the value
-    to sURLLabel.
+    """
+    Convert the value of lText to a shortened URL and assign the value
+    to sText. NOTE: Must delete existing text in sText.
     """
     # Assign the Values to the Variables
     conversionOne = lText.get("1.0", "end-1c")
@@ -28,6 +29,7 @@ def retrieve_input():
 lURLLabel = tk.Label(text="Enter the URL you wish to shorten:")
 lURLLabel.grid(row=0, column=1)
 lText = tk.Text(window)
+lText.insert("end-1c", "https://google.com/")
 lText.grid(row=1, column=1)
 btn_Convert = tk.Button(master=window, text="Convert", command=lambda: retrieve_input())
 btn_Convert.grid(row=2, column=1)
