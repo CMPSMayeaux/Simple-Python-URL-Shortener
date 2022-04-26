@@ -1,6 +1,6 @@
 # Import(s)
 import tkinter as tk
-import pyshorteners as pysh
+from GUI import buttonPress
 
 # Declare the Window
 window = tk.Tk()
@@ -10,29 +10,18 @@ window.columnconfigure([0, 1], minsize=250)
 window.rowconfigure([0, 4], minsize=100)
 window.resizable(width=False, height=False)
 
-
-# Declare Handling of Convert Button Key Press
-def retrieve_input():
-    """
-    Convert the value of lText to a shortened URL and assign the value
-    to sText. NOTE: Must delete existing text in sText.
-    """
-    # Assign the Values to the Variables
-    conversionOne = lText.get("1.0", "end-1c")
-    conv = pysh.Shortener()
-    conversionTwo = conv.tinyurl.short(conversionOne)
-    sText.delete(1.0, "end-1c")
-    sText.insert("end-1c", conversionTwo)
-
-
 # Add Properties to the Layout
 lURLLabel = tk.Label(text="Enter the URL you wish to shorten:")
 lURLLabel.grid(row=0, column=1)
 lText = tk.Text(window)
-lText.insert("end-1c", "https://google.com/")
+lText.insert("end-1c", "https://")
 lText.grid(row=1, column=1)
-btn_Convert = tk.Button(master=window, text="Convert", command=lambda: retrieve_input())
+btn_Convert = tk.Button(master=window, text="Convert", command=lambda: buttonPress.convert_button_press())
 btn_Convert.grid(row=2, column=1)
+btn_Clear = tk.Button(master=window, text="Clear", command=lambda: buttonPress.clear_button_press())
+btn_Clear.grid(row=2, column=2)
+btn_Exit = tk.Button(master=window, text="Exit Program", command=lambda: buttonPress.exit_button_press())
+btn_Exit.grid(row=2, column=0)
 sURLLabel = tk.Label(text="Shortened URL:")
 sURLLabel.grid(row=3, column=1)
 sText = tk.Text(window)
